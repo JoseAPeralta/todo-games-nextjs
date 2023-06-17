@@ -1,8 +1,8 @@
+import { Genres } from "./components/";
 export default function Home() {
   return (
     <main>
-      <h1>Hello World</h1>
-      <p>Hello World</p>
+      <Genres />
     </main>
   );
 }

@@ -1,6 +1,6 @@
-// import "@picocss/pico/";
-import "@/styles/main.scss";
 import "./globals.css";
+import "@/styles/main.scss";
+
 import { Lato } from "next/font/google";
 
 const font_primary = Lato({
@@ -22,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${font_primary.variable} `}>
-      <body>{children}</body>
+      <body>
+        <main className="container-fluid">{children}</main>
+      </body>
     </html>
   );
 }
