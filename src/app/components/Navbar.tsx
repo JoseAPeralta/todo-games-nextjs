@@ -7,14 +7,14 @@ const Navbar = () => {
         <Logo />
       </Link>
       <ul className="m-0 p-0 flex  divide-x divide-slate-200">
-        {/* <li className="list-none m-auto px-2">
-          <Link className="text-slate-200 " href="/">
-            Platforms
-          </Link>
-        </li>
         <li className="list-none m-auto px-2">
           <Link className="text-slate-200" href="/">
             Genres
+          </Link>
+        </li>
+        {/* <li className="list-none m-auto px-2">
+          <Link className="text-slate-200 " href="/">
+            Platforms
           </Link>
         </li>
         <li className="list-none m-auto px-2">
