@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GenresApi } from "@/models";
 import { GenresAdapter } from "@/adapters";
+import { Card } from "../styled";
 
 async function fetchGenres(): Promise<GenresApi> {
   const url = `${process.env.GAMES_API_URL}/genres?key=${process.env.GAMES_API_KEY}&ordering=id`;
@@ -25,9 +26,9 @@ const Genres = async () => {
       <div className="flex flex-wrap justify-center gap-6 ">
         {genres.results.map((genre) => (
           <Link key={genre.id} href={`/genres/${genre.name.toLowerCase()}`}>
-            <article className="border border-orange-500 ">
-              <header>
-                <h3 className="mb-0 border border-orange-500">{genre.name}</h3>
+            <Card as="article" className="border-amber-600">
+              <header className="bg-inherit">
+                <h3 className="mb-0 border-b border-amber-600">{genre.name}</h3>
               </header>
               <Image
                 src={genre.image_background}
@@ -36,7 +37,7 @@ const Genres = async () => {
                 alt={`${genre.name} banner`}
                 style={imageStyle}
               />
-            </article>
+            </Card>
           </Link>
         ))}
       </div>
