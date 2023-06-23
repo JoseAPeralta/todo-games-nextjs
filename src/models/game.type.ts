@@ -1,10 +1,17 @@
 import { Genre } from "@/models";
 
+export interface GamesApi {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Game[];
+  user_platforms: false;
+}
 export interface Game {
   id: number;
   slug: string;
   name: string;
-  released: string | null;
+  released: number | string | null;
   tba: boolean;
   background_image: string;
   rating: number;

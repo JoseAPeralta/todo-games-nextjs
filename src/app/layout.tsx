@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${font_primary.variable} `}>
       <body>
-        <main className="container-fluid">{children}</main>
+        <main className="container-fluid 2xl:container">{children}</main>
       </body>
     </html>
   );
