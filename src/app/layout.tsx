@@ -1,6 +1,6 @@
 import "./globals.css";
 import "@/styles/main.scss";
-import { Navbar } from "@/app/components";
+import { Navbar, Footer } from "@/app/components";
 import { Lato } from "next/font/google";
 
 const font_primary = Lato({
@@ -26,6 +26,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <main className="container-fluid 2xl:container">{children}</main>
+        <Footer />
       </body>
     </html>
   );
