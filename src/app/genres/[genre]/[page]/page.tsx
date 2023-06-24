@@ -28,7 +28,6 @@ export default async function Page({ params }: pageType) {
       <header>
         <h2 className="capitalize text-center mb-6 border-b border-gray-500">
           {params.genre}
-          {games.page}
         </h2>
       </header>
       <Pagination
