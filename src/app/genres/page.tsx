@@ -25,7 +25,7 @@ const Genres = async () => {
 
       <div className="flex flex-wrap justify-center gap-6 ">
         {genres.results.map((genre) => (
-          <Link key={genre.id} href={`/genres/${genre.slug.toLowerCase()}`}>
+          <Link key={genre.id} href={`/genres/${genre.slug.toLowerCase()}/1`}>
             <Card as="article" className="border-amber-600">
               <header className="bg-inherit">
                 <h3 className="mb-0 border-b border-amber-600">{genre.name}</h3>
