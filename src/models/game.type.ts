@@ -11,9 +11,13 @@ export interface Game {
   id: number;
   slug: string;
   name: string;
+  description: string;
+  description_raw: string;
   released: number | string | null;
   tba: boolean;
   background_image: string;
+  background_image_additional: string;
+  website: string;
   rating: number;
   rating_top: number;
   ratings: any[];
@@ -21,8 +25,10 @@ export interface Game {
   reviews_text_count: number;
   added: number;
   added_by_status: null;
-  metacritic: null;
+  metacritic: number | null;
+  metacritic_url: string;
   playtime: number;
+  reddit_url: string;
   suggestions_count: number;
   updated: string;
   user_game: null;
@@ -37,7 +43,6 @@ export interface Game {
   clip: null;
   tags: Tags[];
   esrb_rating: EsrbRating;
-  short_screenshots: ShortScreenshot[];
 }
 
 export interface PlatformElement {
@@ -89,10 +94,10 @@ export interface Store {
 }
 
 export interface Tags extends Genre {
-  language: "es" | "eng";
-}
-
-export interface ShortScreenshot {
   id: number;
-  image: string;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+  language: "es" | "eng";
 }

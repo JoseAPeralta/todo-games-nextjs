@@ -11,7 +11,7 @@ export interface Genre {
   slug: string;
   games_count: number;
   image_background: string;
-  games: GenreGameApi[];
+  games?: GenreGameApi[];
 }
 
 interface GenreGameApi {
