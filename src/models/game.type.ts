@@ -46,13 +46,14 @@ export interface Game {
 }
 
 export interface PlatformElement {
+  id: number;
   platform: Platform;
   released_at: null;
   requirements_en: PlatformRequirements | null;
   requirements_ru: PlatformRequirements | null;
 }
 
-export interface Platform {
+interface Platform {
   id: number;
   name: string;
   slug: string;
