@@ -8,8 +8,18 @@ const Navbar = () => {
       </Link>
       <ul className="m-0 p-0 flex  divide-x divide-slate-200">
         <li className="list-none m-auto px-2">
-          <Link className="text-slate-200" href="/">
+          <Link className="text-slate-200" href="/genres">
             Genres
+          </Link>
+        </li>
+        <li className="list-none m-auto px-2">
+          <Link className="text-slate-200" href="/platforms">
+            Platforms
+          </Link>
+        </li>
+        <li className="list-none m-auto px-2">
+          <Link className="text-slate-200" href="/games/1">
+            Games
           </Link>
         </li>
         {/* <li className="list-none m-auto px-2">

@@ -1,18 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GenresApi } from "@/models";
+import { PlatformsApi } from "@/models";
 import { GenresAdapter } from "@/adapters";
 import { Card } from "../styled";
 
-async function fetchGenres(): Promise<GenresApi> {
-  const url = `${process.env.GAMES_API_URL}/genres?key=${process.env.GAMES_API_KEY}&ordering=id`;
-  return await fetch(url)
-    .then((res) => res.json())
-    .then((res) => GenresAdapter(res));
+async function fetchGenres(): Promise<PlatformsApi> {
+  const url = `${process.env.GAMES_API_URL}/platforms?key=${process.env.GAMES_API_KEY}&ordering=id`;
+  return await fetch(url).then((res) => res.json());
 }
 
 const Genres = async () => {
-  const genres = await fetchGenres();
+  const platforms = await fetchGenres();
   const imageStyle = {
     maxHeight: 150,
     minHeight: 150,
@@ -24,17 +22,19 @@ const Genres = async () => {
       </header>
 
       <div className="flex flex-wrap justify-center gap-6 ">
-        {genres.results.map((genre) => (
-          <Link key={genre.id} href={`/genres/${genre.slug.toLowerCase()}/1`}>
+        {platforms.results.map((platform) => (
+          <Link key={platform.id} href={`/platforms/${platform.id}/1`}>
             <Card as="article" className="border-amber-600">
               <header className="bg-inherit">
-                <h3 className="mb-0 border-b border-amber-600">{genre.name}</h3>
+                <h3 className="mb-0 border-b border-amber-600">
+                  {platform.name}
+                </h3>
               </header>
               <Image
-                src={genre.image_background}
+                src={platform.image_background}
                 width={300}
                 height={120}
-                alt={`${genre.name} banner`}
+                alt={`${platform.name} banner`}
                 style={imageStyle}
               />
             </Card>
