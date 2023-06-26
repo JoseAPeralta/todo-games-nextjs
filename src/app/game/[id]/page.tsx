@@ -8,7 +8,7 @@ import {
 } from "react-icons/bs";
 import { Badge, Card } from "@/app/styled";
 import { toLocaleDate } from "@/helpers";
-import { IfExist } from "@/app/components";
+import { GenreBadge, IfExist } from "@/app/components";
 import { GameAdapter } from "@/adapters";
 
 async function fetchGame(id: number): Promise<Game> {
@@ -111,9 +111,9 @@ export default async function Page({ params }: pageType) {
           <ul className="flex flex-wrap gap-1">
             Genres:
             {game.genres.map((genre) => (
-              <Badge as="li" key={genre.id} className="list-none inline ">
+              <GenreBadge as="li" key={genre.id} className="list-none inline ">
                 {genre.name}
-              </Badge>
+              </GenreBadge>
             ))}
           </ul>
           <ul>
