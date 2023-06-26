@@ -1,7 +1,7 @@
 import { GamesApi } from "@/models";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge, Card } from "@/app/styled";
+import { Card } from "@/app/styled";
 import { toLocaleDate } from "@/helpers";
 import { GenreBadge, Pagination } from "@/app/components";
 
