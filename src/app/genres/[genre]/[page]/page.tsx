@@ -1,15 +1,15 @@
 import { GamesApi } from "@/models";
 import Image from "next/image";
+import Link from "next/link";
 import { Badge, Card } from "@/app/styled";
 import { toLocaleDate } from "@/helpers";
 import Pagination from "@/app/components/Pagination";
-import { type } from "os";
 
-interface PagesGamesApi extends GamesApi {
+interface PagesGames extends GamesApi {
   page_size: number;
   page: number;
 }
-async function fetchGames(genre: string, page: number): Promise<PagesGamesApi> {
+async function fetchGames(genre: string, page: number): Promise<PagesGames> {
   const page_size = 40;
   const url = `${process.env.GAMES_API_URL}/games?key=${process.env.GAMES_API_KEY}&genres=${genre}&page_size=${page_size}&page=${page}`;
   return await fetch(url)
@@ -38,7 +38,7 @@ export default async function Page({ params }: pageType) {
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 ">
         {games.results.map((game) => (
-          <Card key={game.id} as="article">
+          <Card key={game.id} as="article" className="grid grid-cols-1">
             <section>
               <Image
                 src={game.background_image}
@@ -50,7 +50,11 @@ export default async function Page({ params }: pageType) {
             </section>
             <section className="pl-3 pr-3">
               <header>
-                <h3 className="mb-0 p-0">{game.name}</h3>
+                <h3 className="mb-0 p-0">
+                  <Link href={`/game/${game.id}`} className="text-slate-300">
+                    {game.name}
+                  </Link>
+                </h3>
               </header>
               <section className="text-xs pb-1">
                 {toLocaleDate(game.released)}
