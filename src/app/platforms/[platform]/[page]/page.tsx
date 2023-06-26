@@ -94,7 +94,7 @@ export default async function Page({ params }: pageType) {
         totalItems={500}
         currentPage={platforms.page}
         itemsPerPage={platforms.page_size}
-        renderPageLink={(page) => `/genres/${params.platform}/${page}`}
+        renderPageLink={(page) => `/platforms/${params.platform}/${page}`}
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 ">
         {platforms.results.map((platform) => (
@@ -149,7 +149,7 @@ export default async function Page({ params }: pageType) {
         totalItems={500}
         currentPage={platforms.page}
         itemsPerPage={platforms.page_size}
-        renderPageLink={(page) => `/genres/${params.platform}/${page}`}
+        renderPageLink={(page) => `/platforms/${params.platform}/${page}`}
       />
     </section>
   );
