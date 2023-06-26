@@ -10,32 +10,10 @@ interface IObjectKeys {
   [key: string]: string;
 }
 
-interface bgColorsIT extends IObjectKeys {
-  racing: string;
-  shooter: string;
-  adventure: string;
-  action: string;
-  rpg: string;
-  fighting: string;
-  puzzle: string;
-  strategy: string;
-  arcade: string;
-  simulation: string;
-  sports: string;
-  card: string;
-  family: string;
-  boardgames: string;
-  educational: string;
-  casual: string;
-  indie: string;
-  massivelymultiplayer: string;
-  platformer: string;
-}
-
-const bgColors: bgColorsIT = {
+const bgColors: IObjectKeys = {
   racing: "bg-red-900",
   shooter: "bg-orange-900",
-  adventure: "bg-amber-900",
+  adventure: "bg-orange-700",
   action: "bg-yellow-900",
   rpg: "bg-lime-900",
   fighting: "bg-green-900",
@@ -56,7 +34,6 @@ const bgColors: bgColorsIT = {
 
 const GenreBadge = ({ children, as, className }: genreBadge) => {
   const genre = children.toLowerCase().replaceAll(/\s/g, "");
-
   return (
     <Badge
       as={as}
