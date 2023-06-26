@@ -3,7 +3,7 @@ import Link from "next/link";
 import { GenresApi } from "@/models";
 import { GenresAdapter } from "@/adapters";
 import { Card } from "../styled";
-
+import { GenreBadge } from "@/app/components";
 async function fetchGenres(): Promise<GenresApi> {
   const url = `${process.env.GAMES_API_URL}/genres?key=${process.env.GAMES_API_KEY}&ordering=id`;
   return await fetch(url)
@@ -29,6 +29,7 @@ const Genres = async () => {
             <Card as="article" className="border-amber-600">
               <header className="bg-inherit">
                 <h3 className="mb-0 border-b border-amber-600">{genre.name}</h3>
+                <GenreBadge>{genre.name}</GenreBadge>
               </header>
               <Image
                 src={genre.image_background}

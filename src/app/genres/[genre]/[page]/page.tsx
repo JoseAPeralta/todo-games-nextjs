@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge, Card } from "@/app/styled";
 import { toLocaleDate } from "@/helpers";
-import Pagination from "@/app/components/Pagination";
+import { GenreBadge, Pagination } from "@/app/components";
 
 interface PagesGames extends GamesApi {
   page_size: number;
@@ -61,9 +61,9 @@ export default async function Page({ params }: pageType) {
               </section>
               <section className="flex flex-wrap gap-1 text-xs pb-2">
                 {game.genres.map((genre) => (
-                  <Badge key={`${game.id}-${genre.id}`} className="bg-red-900">
+                  <GenreBadge key={`${game.id}-${genre.id}`}>
                     {genre.name}
-                  </Badge>
+                  </GenreBadge>
                 ))}
               </section>
             </section>
