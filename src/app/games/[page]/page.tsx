@@ -50,7 +50,7 @@ export default async function Page({ params }: pageType) {
             <section className="pl-3 pr-3">
               <header>
                 <h3 className="mb-0 p-0">
-                  <Link href={`/games/${game.id}`} className="text-slate-300">
+                  <Link href={`/game/${game.id}`} className="text-slate-300">
                     {game.name}
                   </Link>
                 </h3>

@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Logo } from "./index";
-const Navbar = () => {
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { LoginButton, LogoutButton } from "@/app/components";
+
+const Navbar = async () => {
+  const session = await getServerSession(authOptions);
+
   return (
     <nav className="flex flex-wrap justify-between content-center py-5 px-10 bg-amber-600 mb-6 sm:flex-nowrap sm:py-2 ">
       <Link
@@ -25,16 +31,9 @@ const Navbar = () => {
             Games
           </Link>
         </li>
-        {/* <li className="list-none m-auto px-2">
-          <Link className="text-slate-200 " href="/">
-            Platforms
-          </Link>
-        </li>
         <li className="list-none m-auto px-2">
-          <Link className="text-slate-200" href="/">
-            Login
-          </Link>
-        </li> */}
+          {!session ? <LoginButton /> : <LogoutButton />}
+        </li>
       </ul>
     </nav>
   );
