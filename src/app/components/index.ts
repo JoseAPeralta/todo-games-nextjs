@@ -1,3 +1,4 @@
+export * from "./AuthButtons";
 export { default as Footer } from "./Footer";
 export { default as GenreBadge } from "./GenreBadge";
 export { default as IfExist } from "./IfExist";

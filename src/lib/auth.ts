@@ -1,5 +1,8 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import clientPromise from "@/lib/db";
+import { compare } from "bcryptjs";
+import { UserIt } from "@/models";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -7,7 +10,7 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     CredentialsProvider({
-      name: "Sign in",
+      name: "email and password",
       credentials: {
         email: {
           label: "Email",
@@ -17,9 +20,54 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const user = { id: "1", name: "Admin", email: "admin@admin.com" };
-        return user;
+        if (!credentials?.email || !credentials.password) {
+          return null;
+        }
+
+        const client = await clientPromise;
+        const db = client.db(process.env.MONGODB_NAME);
+        const user = await db.collection("users").findOne<UserIt>({
+          email: credentials.email,
+        });
+
+        if (!user || !(await compare(credentials.password, user.password))) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+        };
       },
     }),
   ],
+  callbacks: {
+    session: ({ session, token }) => {
+      //   console.log("Session Callback", { session, token });
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          randomKey: token.randomKey,
+        },
+      };
+    },
+    jwt: ({ token, user }) => {
+      //   console.log("JWT Callback", { token, user });
+      if (user) {
+        const u = user as unknown as any;
+        return {
+          ...token,
+          id: u.id,
+          randomKey: u.randomKey,
+        };
+      }
+      return token;
+    },
+  },
+  pages: {
+    signIn: "/auth/login",
+  },
 };
