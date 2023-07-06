@@ -1,9 +1,23 @@
-import Genres from "@/app/genres/page";
+import { ItemsList } from "@/app/components";
 
-export default function Home() {
+const Home = async () => {
   return (
     <main>
-      <Genres />
+      <ItemsList
+        search="games"
+        page_title="Games"
+        page_size={6}
+        className="mb-6"
+      />
+      <ItemsList
+        search="platforms"
+        page_title="Platforms"
+        page_size={6}
+        className="mb-6"
+      />
+      <ItemsList search="genres" page_title="Genres" page_size={6} />
     </main>
   );
-}
+};
+
+export default Home;
