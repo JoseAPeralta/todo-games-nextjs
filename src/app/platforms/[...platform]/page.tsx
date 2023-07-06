@@ -77,24 +77,25 @@ async function fetchGames(
 }
 
 type pageType = {
-  params: { platform: string; page: number };
+  params: { platform: [platform: string, page: number] };
 };
 
 export default async function Page({ params }: pageType) {
-  const platforms = await fetchGames(params.platform, params.page);
+  const [platform, page] = params.platform;
+  const platforms = await fetchGames(platform, page);
 
   return (
     <section>
       <header>
         <h2 className="capitalize text-center mb-6 border-b border-gray-500">
-          {platformId[params.platform]}
+          {platformId[platform]}
         </h2>
       </header>
       <Pagination
         totalItems={500}
         currentPage={platforms.page}
         itemsPerPage={platforms.page_size}
-        renderPageLink={(page) => `/platforms/${params.platform}/${page}`}
+        renderPageLink={(page) => `/platforms/${page}/${page}`}
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 ">
         {platforms.results.map((platform) => (
@@ -149,7 +150,7 @@ export default async function Page({ params }: pageType) {
         totalItems={500}
         currentPage={platforms.page}
         itemsPerPage={platforms.page_size}
-        renderPageLink={(page) => `/platforms/${params.platform}/${page}`}
+        renderPageLink={(page) => `/platforms/${page}/${page}`}
       />
     </section>
   );

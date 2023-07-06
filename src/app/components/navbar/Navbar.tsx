@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Logo } from "./index";
+import { Logo } from "../index";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { LoginButton, LogoutButton } from "@/app/components";
+import { LoginButton, LogoutButton } from "@/app/components/navbar/AuthButtons";
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);

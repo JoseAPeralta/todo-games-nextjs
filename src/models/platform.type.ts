@@ -1,4 +1,5 @@
 export interface Platform {
+  background_image: string;
   id: number;
   name: string;
   slug: string;
