@@ -9,8 +9,7 @@ interface PageGamesApi extends GamesApi {
   page_size: number;
   page: number;
 }
-async function fetchGames(genre: string, page: number): Promise<PageGamesApi> {
-  const page_size = 40;
+async function fetchGames(page: number, page_size = 40): Promise<PageGamesApi> {
   const url = `${process.env.GAMES_API_URL}/games?key=${process.env.GAMES_API_KEY}&page_size=${page_size}&page=${page}`;
   return await fetch(url)
     .then((res) => res.json())
@@ -18,10 +17,10 @@ async function fetchGames(genre: string, page: number): Promise<PageGamesApi> {
 }
 
 type pageType = {
-  params: { games: string; page: number };
+  params: { page: number; page_size?: number };
 };
-export default async function Page({ params }: pageType) {
-  const games = await fetchGames(params.games, params.page);
+export default async function Games({ params }: pageType) {
+  const games = await fetchGames(params.page, params.page_size);
   return (
     <section>
       <header>

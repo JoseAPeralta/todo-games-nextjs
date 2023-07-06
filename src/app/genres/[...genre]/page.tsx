@@ -1,7 +1,7 @@
 import { GamesApi } from "@/models";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge, Card } from "@/app/styled";
+import { Card } from "@/app/styled";
 import { toLocaleDate } from "@/helpers";
 import { GenreBadge, Pagination } from "@/app/components";
 
@@ -15,26 +15,26 @@ async function fetchGames(genre: string, page: number): Promise<PageGamesApi> {
   return await fetch(url)
     .then((res) => res.json())
     .then((res) => ({ ...res, page_size, page }));
-  // .then((res) => GenresAdapter(res));
 }
 
 type pageType = {
-  params: { genre: string; page: number };
+  params: { genre: [genre: string, page: number] };
 };
 export default async function Page({ params }: pageType) {
-  const games = await fetchGames(params.genre, params.page);
+  const [genre, page] = params.genre;
+  const games = await fetchGames(genre, page);
   return (
     <section>
       <header>
         <h2 className="capitalize text-center mb-6 border-b border-gray-500">
-          {params.genre}
+          {genre}
         </h2>
       </header>
       <Pagination
         totalItems={500}
         currentPage={games.page}
         itemsPerPage={games.page_size}
-        renderPageLink={(page) => `/genres/${params.genre}/${page}`}
+        renderPageLink={(page) => `/genres/${genre}/${page}`}
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 ">
         {games.results.map((game) => (
@@ -86,7 +86,7 @@ export default async function Page({ params }: pageType) {
         totalItems={500}
         currentPage={games.page}
         itemsPerPage={games.page_size}
-        renderPageLink={(page) => `/genres/${params.genre}/${page}`}
+        renderPageLink={(page) => `/genres/${genre}/${page}`}
       />
     </section>
   );
